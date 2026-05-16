@@ -10,14 +10,14 @@ public class HomePage extends BasePage {
     }
 
     private final By signInLink = By.xpath("//span[@id='nav-signin-text']/a[text()='Sign In']");
-    private final By searchBookField = By.xpath("//input[@id='filter_name_desktop']");
-    private final By searchButton = By.xpath("//form[.//input[@id='filter_name_desktop']]//button[@type='submit']");
     private final By preloader = By.className("preloader");
-    private final By productList = By.className("single-product");
 
     public void clickSignInLink() {
         click(signInLink);
     }
+
+    private final By searchBookField = By.xpath("//input[@id='filter_name_desktop']");
+    private final By searchButton = By.xpath("//form[.//input[@id='filter_name_desktop']]//button[@type='submit']");
 
     public void setSearchBookField(String bookName) {
         set(searchBookField, bookName);
@@ -32,6 +32,8 @@ public class HomePage extends BasePage {
         setSearchBookField(bookName);
         clickSearchButton();
     }
+
+    private final By productList = By.className("single-product");
 
     public void clickFirstProduct() {
         waitUntilInvisible(preloader);
