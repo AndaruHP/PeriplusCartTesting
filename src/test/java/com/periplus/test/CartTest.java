@@ -11,5 +11,8 @@ public class CartTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.logInWeb("andaruandaru1904@gmail.com", "PeriplusAccount2026");
+
+        homePage.searchBook("How to win friends and influence people");
+        homePage.clickFirstProduct();
     }
 }

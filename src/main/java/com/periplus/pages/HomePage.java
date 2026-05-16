@@ -12,6 +12,8 @@ public class HomePage extends BasePage {
     private final By signInLink = By.xpath("//span[@id='nav-signin-text']/a[text()='Sign In']");
     private final By searchBookField = By.xpath("//input[@id='filter_name_desktop']");
     private final By searchButton = By.xpath("//form[.//input[@id='filter_name_desktop']]//button[@type='submit']");
+    private final By preloader = By.className("preloader");
+    private final By productList = By.className("single-product");
 
     public void clickSignInLink() {
         click(signInLink);
@@ -22,6 +24,7 @@ public class HomePage extends BasePage {
     }
 
     public void clickSearchButton() {
+        waitUntilInvisible(preloader);
         click(searchButton);
     }
 
@@ -30,5 +33,8 @@ public class HomePage extends BasePage {
         clickSearchButton();
     }
 
-
+    public void clickFirstProduct() {
+        waitUntilInvisible(preloader);
+        finds(productList).getFirst().click();
+    }
 }
