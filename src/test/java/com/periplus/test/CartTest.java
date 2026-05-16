@@ -2,6 +2,8 @@ package com.periplus.test;
 
 import com.periplus.base.BaseTest;
 import com.periplus.pages.LoginPage;
+import com.periplus.pages.ProductPage;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CartTest extends BaseTest {
@@ -14,5 +16,14 @@ public class CartTest extends BaseTest {
 
         homePage.searchBook("How to win friends and influence people");
         homePage.clickFirstProduct();
+
+        ProductPage productPage = new ProductPage(driver);
+        Assert.assertTrue(productPage.isProductInStock());
+
+        productPage.addProductToCart("2");
+
+        productPage.clickCartButton();
+
+
     }
 }

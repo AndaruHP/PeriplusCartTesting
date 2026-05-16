@@ -10,7 +10,6 @@ public class HomePage extends BasePage {
     }
 
     private final By signInLink = By.xpath("//span[@id='nav-signin-text']/a[text()='Sign In']");
-    private final By preloader = By.className("preloader");
 
     public void clickSignInLink() {
         click(signInLink);

@@ -12,6 +12,8 @@ import java.util.List;
 public class BasePage {
     protected WebDriver driver;
 
+    protected final By preloader = By.className("preloader");
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
     }
