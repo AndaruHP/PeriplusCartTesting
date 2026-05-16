@@ -3,12 +3,16 @@ package com.base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class BasePage {
-    public static WebDriver driver;
+    protected WebDriver driver;
 
-    public void setDriver(WebDriver driver) {
-        BasePage.driver = driver;
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
     }
 
     protected WebElement find(By locator) {
@@ -21,6 +25,12 @@ public class BasePage {
     }
 
     protected void click(By locator) {
+        waitUntilClickable(locator);
         find(locator).click();
+    }
+
+    protected void waitUntilClickable(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 }
