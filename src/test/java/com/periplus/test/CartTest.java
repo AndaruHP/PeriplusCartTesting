@@ -1,6 +1,7 @@
 package com.periplus.test;
 
 import com.periplus.base.BaseTest;
+import com.periplus.pages.CartPage;
 import com.periplus.pages.LoginPage;
 import com.periplus.pages.ProductPage;
 import org.testng.Assert;
@@ -22,8 +23,8 @@ public class CartTest extends BaseTest {
 
         productPage.addProductToCart("1");
 
-        productPage.clickCartButton();
+        CartPage cartPage = productPage.clickCartButton();
 
-        Assert.assertTrue(productPage.isCartNotEmpty());
+        Assert.assertTrue(cartPage.isCartNotEmpty());
     }
 }
