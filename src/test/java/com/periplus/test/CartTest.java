@@ -20,10 +20,10 @@ public class CartTest extends BaseTest {
         ProductPage productPage = new ProductPage(driver);
         Assert.assertTrue(productPage.isProductInStock());
 
-        productPage.addProductToCart("2");
+        productPage.addProductToCart("1");
 
         productPage.clickCartButton();
 
-
+        Assert.assertTrue(productPage.isCartNotEmpty());
     }
 }

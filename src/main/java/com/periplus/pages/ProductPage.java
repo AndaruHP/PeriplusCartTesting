@@ -16,6 +16,7 @@ public class ProductPage extends BasePage {
     private final By addToCartButton = By.xpath("//button[contains(@class, 'btn-add-to-cart')]");
     private final By successAddToCartText = By.xpath("//div[contains(text(), 'Success add to cart')]");
     private final By notificationModal = By.id("Notification-Modal");
+    private final By cartIsNotEmpty = By.xpath("//form[@id='basket']");
 
     public boolean isProductInStock() {
         return find(stockStatus).getText().contains("In Stock");
@@ -46,5 +47,9 @@ public class ProductPage extends BasePage {
         waitUntilInvisible(preloader);
         waitUntilInvisible(notificationModal);
         click(cartButtonPage);
+    }
+
+    public boolean isCartNotEmpty() {
+        return !finds(cartIsNotEmpty).isEmpty();
     }
 }
