@@ -1,6 +1,7 @@
 package com.periplus.test;
 
 import com.periplus.base.BaseTest;
+import com.periplus.base.TestConfig;
 import com.periplus.pages.CartPage;
 import com.periplus.pages.LoginPage;
 import com.periplus.pages.ProductPage;
@@ -13,9 +14,9 @@ public class CartTest extends BaseTest {
         homePage.clickSignInLink();
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.logInWeb("andaruandaru1904@gmail.com", "PeriplusAccount2026");
+        loginPage.logInWeb(TestConfig.getUserEmail(), TestConfig.getUserPassword());
 
-        homePage.searchBook("How to win friends and influence people");
+        homePage.searchBook(TestConfig.getSearchQuery());
         homePage.clickFirstProduct();
 
         ProductPage productPage = new ProductPage(driver);

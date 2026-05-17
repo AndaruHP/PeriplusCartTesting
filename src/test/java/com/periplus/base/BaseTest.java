@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 public class BaseTest {
     protected WebDriver driver;
     protected HomePage homePage;
-    private final String PERIPLUS_URL = "https://periplus.com/";
+    private static final String PERIPLUS_URL = "https://periplus.com/";
 
     @BeforeClass
     public void setUp() {
@@ -24,8 +24,14 @@ public class BaseTest {
         homePage = new HomePage(driver);
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
-        driver.quit();
+        if (driver != null) {
+            try {
+                driver.quit();
+            } catch (Exception ignore) {
+                // ignore teardown exceptions
+            }
+        }
     }
 }
