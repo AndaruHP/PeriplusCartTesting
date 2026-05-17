@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 public class BaseTest {
     protected WebDriver driver;
     protected HomePage homePage;
-    private String PERIPLUS_URL = "https://periplus.com/";
+    private final String PERIPLUS_URL = "https://periplus.com/";
 
     @BeforeClass
     public void setUp() {
