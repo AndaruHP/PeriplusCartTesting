@@ -5,58 +5,56 @@ Repository: https://github.com/AndaruHP/PeriplusCartTesting
 
 Purpose
 -------
-This repository contains a small automated test suite for the Periplus website focused on cart-related flows (search, add to cart, view cart). It is implemented with Selenium WebDriver and TestNG to be used as a submission or demo of automated tests.
+This repository contains a small automated test suite for the Periplus website focused on cart-related flows (search, add to cart, view cart).
 
-Minimal instructions
---------------------
+Test Case
+---------
+| No | Component | Description                                                                                                                                                                                                                                                                                                                                                       |
+| --- | --- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1 | Test Case ID | TC-001                                                                                                                                                                                                                                                                                                                                                            |
+| 2 | Description | Verify that a user can successfully add a product to the shopping cart.                                                                                                                                                                                                                                                                                           |
+| 3 | Module | Shopping Cart                                                                                                                                                                                                                                                                                                                                                     |
+| 4 | Pre-conditions | 1. User has a registered account on Periplus.com<br/>2. The shopping cart is empty                                                                                                                                                                                                                                                                                |
+| 5 | Test Steps | 1. Open https://periplus.com<br/>2. Log in with valid credentials<br/>3. Type the product name in the search bar (e.g., "How to Win Friends and Influence People")<br/>4. Click the search button<br/>5. Select the first product from the search results<br/>6. Enter the quantity<br/>7. Click the "ADD TO CART" button<br/>8. Click the "SHOPPING CART" button |
+| 6 | Test Data | - Email: andaruandaru1904@gmail.com<br/>- Password: PeriplusAccount2026<br/>- Search keyword: How to Win Friends and Influence People<br/>- Quantity: 1                                                                                                                                                                                                           |
+| 7 | Expected Result | The book is added to the cart, and the cart page shows quantity 1 for the selected book.                                                                                                                                                                                                                                                                          |
+| 8 | Actual Result | Matches expected result, the selected book appears in the cart with quantity 1.                                                                                                                                                                                                                                                                                   |
+| 9 | Post-conditions | The cart contains the selected product with quantity 1.                                                                                                                                                                                                                                                                                                           |
+| 10 | Status | Pass                                                                                                                                                                                                                                                                                                                                                              |
+| 11 | Priority | High                                                                                                                                                                                                                                                                                                                                                              |
+| 12 | Tester / Date | Andaru Hymawan / 17 May 2026 |
 
-Prerequisites
-- JDK 21
-- Maven
-- Chrome (and ChromeDriver on PATH) or a configured WebDriver
+Test Run Log
+------------
+![Test run log](assets/log.png)
 
-Build
+How to Run
+----------
+Run the full TestNG suite:
 
-Run a normal build (skip tests if you want):
-
-```
-mvn -DskipTests package
-```
-
-Run tests
-
-This project uses TestNG and `testng.xml` as the suite configuration. Tests read credentials and test data from system properties or environment variables. Defaults are present in the test code but you should override them when submitting or running in CI.
-
-Examples (PowerShell):
-
-```
-# run tests with custom credentials and search query
-mvn -Dperiplus.user="you@example.com" -Dperiplus.password="SecretPwd" -Dperiplus.search="Some Book" test
-```
-
-Or set environment variables (CI):
-
-```
-$env:PERIPLUS_USER = "you@example.com"
-$env:PERIPLUS_PASSWORD = "SecretPwd"
-$env:PERIPLUS_SEARCH = "Some Book"
+```powershell
 mvn test
 ```
 
-What to include when submitting
-- `pom.xml`
-- `testng.xml`
-- `src/` (source + tests)
-- `README.md` (this file)
+Run with custom data using system properties:
 
-What not to include
-- `target/` (build artifacts)
-- local binaries or drivers
-- real credentials (use properties or environment variables instead)
+```powershell
+mvn -Dperiplus.user="you@example.com" -Dperiplus.password="SecretPwd" -Dperiplus.search="Some Book" test
+```
 
-Notes
-- Tests are executed via TestNG suite `testng.xml` and Maven Surefire plugin.
-- If tests require ChromeDriver, ensure it is available on PATH or configure the WebDriver accordingly.
+Test Data
+---------
+Values are loaded in this order: system properties, environment variables, then defaults (see `TestConfig`).
 
-That's it — minimal and ready to submit.
+- `periplus.user` / `PERIPLUS_USER`
+- `periplus.password` / `PERIPLUS_PASSWORD`
+- `periplus.search` / `PERIPLUS_SEARCH`
 
+Optional: copy `.env.example` to `.env` and load it with your shell or CI tool before running tests.
+
+Project Structure
+-----------------
+- `src/main/java/com/periplus/pages` — Page Object classes
+- `src/test/java/com/periplus/base` — Base test setup and config
+- `src/test/java/com/periplus/test` — Test classes
+- `testng.xml` — TestNG suite definition

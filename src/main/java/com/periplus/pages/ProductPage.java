@@ -6,7 +6,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+/**
+ * Page object for the product detail page.
+ */
 public class ProductPage extends BasePage {
+    // Create a new product page instance.
     public ProductPage(WebDriver driver) {
         super(driver);
     }
@@ -17,11 +21,12 @@ public class ProductPage extends BasePage {
     private final By successAddToCartText = By.xpath("//div[contains(text(), 'Success add to cart')]");
     private final By notificationModal = By.id("Notification-Modal");
 
+    // Check whether the product is in stock.
     public boolean isProductInStock() {
         return find(stockStatus).getText().contains("In Stock");
     }
 
-
+    // Fill the quantity field.
     public void setQuantityField(String quantity) {
         WebElement element = find(quantityField);
         element.sendKeys(Keys.CONTROL + "a");
@@ -29,12 +34,14 @@ public class ProductPage extends BasePage {
 
     }
 
+    // Click the add-to-cart button.
     public void clickAddToCart() {
         waitUntilInvisible(preloader);
         waitUntilInvisible(successAddToCartText);
         click(addToCartButton);
     }
 
+    // Set quantity and add the product to the cart.
     public void addProductToCart(String quantity) {
         setQuantityField(quantity);
         clickAddToCart();
@@ -42,6 +49,7 @@ public class ProductPage extends BasePage {
 
     private final By cartButtonPage = By.xpath("//div[@id='show-your-cart']");
 
+    // Open the cart page.
     public CartPage clickCartButton() {
         waitUntilInvisible(preloader);
         waitUntilInvisible(notificationModal);
